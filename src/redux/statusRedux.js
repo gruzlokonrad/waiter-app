@@ -1,18 +1,17 @@
+import { API_URL } from '../config'
+
 // selectors
-// export const getListById = ({ lists }, listId) => lists.find(list => list.id === listId)
 export const getAllStatus = ({ status }) => status
 
 // actions
 const createActionName = actionName => `app/tables/${actionName}`;
-// const ADD_LIST = createActionName('ADD_LIST');
 const UPDATE_STATUS = createActionName('UPDATE_STATUS')
 
 // action creators
-// export const addList = payload => ({ type: ADD_LIST, payload })
 export const updateStatus = payload => ({type: UPDATE_STATUS, payload})
 export const fetchStatus = () => {
   return (dispatch) => {
-    fetch('http://localhost:3131/api/status/all')
+    fetch(`${API_URL}/status/`)
       .then(res => res.json())
       .then(status => dispatch(updateStatus(status)))
   }
